@@ -5,15 +5,17 @@ import (
 	"time"
 )
 
-func Name(time time.Time) string {
-	y, m, d, w := time.Year(), int(time.Month()), time.Day(), convertWeekday(time.Weekday())
+var JST = time.FixedZone("JST", 3600*9)
+
+func Name(t time.Time) string {
+	t = t.In(JST)
+	y, m, d, w := toYMDW(t)
 	name := getName(y, m, d, w)
-	
+
 	//振替休日
 	if len(name) <= 0 {
 		if 1973 <= y && w == 0 {
-			yday := time.AddDate(0, 0, -1)
-			yname := getName(yday.Year(), int(yday.Month()), yday.Day(), convertWeekday(yday.Weekday()))
+			yname := getYesterdayNameFromTime(t)
 			if len(yname) >= 1 {
 				name = "振替休日"
 			}
@@ -24,8 +26,14 @@ func Name(time time.Time) string {
 	return name
 }
 
-func convertWeekday(w time.Weekday) int {
-	return (int(w) + 6) % 7
+func toYMDW(t time.Time) (int, int, int, int) {
+	return t.Year(), int(t.Month()), t.Day(), (int(t.Weekday()) + 6) % 7
+}
+
+func getYesterdayNameFromTime(t time.Time) string {
+	yesterday := t.AddDate(0, 0, -1)
+	y, m, d, w := toYMDW(yesterday)
+	return getName(y, m, d, w)
 }
 
 func getName(y, m, d, w int) string {
@@ -39,7 +47,7 @@ func getName(y, m, d, w int) string {
 	} else if y == 1993 && m == 6 && d == 9 {
 		return "皇太子・徳仁親王の結婚の儀"
 	}
-	
+
 	//国民の祝日
 	if m == 1 {
 		if d == 1 {
@@ -111,7 +119,7 @@ func getName(y, m, d, w int) string {
 		}
 		if 2009 <= y && w == 1 {
 			if 21 <= d && d <= 23 {
-				if d + 1 == shuuBunDay(y) {
+				if d+1 == shuuBunDay(y) {
 					return "国民の休日"
 				}
 			}
@@ -142,12 +150,12 @@ func getName(y, m, d, w int) string {
 			return "天皇誕生日"
 		}
 	}
-	
+
 	return ""
 }
 
 func shunBunDay(y int) int {
-	add := 0.242194 * float64(y - 1980) - math.Floor(float64(y - 1980) / 4.0)
+	add := 0.242194*float64(y-1980) - math.Floor(float64(y-1980)/4.0)
 	val := 0.0
 	if 2100 <= y && y <= 2150 {
 		val = 21.8510 + add
@@ -162,7 +170,7 @@ func shunBunDay(y int) int {
 }
 
 func shuuBunDay(y int) int {
-	add := 0.242194 * float64(y - 1980) - math.Floor(float64(y - 1980) / 4.0)
+	add := 0.242194*float64(y-1980) - math.Floor(float64(y-1980)/4.0)
 	val := 0.0
 	if 2100 <= y && y <= 2150 {
 		val = 24.2488 + add
