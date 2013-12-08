@@ -154,32 +154,26 @@ func getName(y, m, d, w int) string {
 	return ""
 }
 
-func shunBunDay(y int) int {
+func calcDay(future, present, past float64, y int) int {
 	add := 0.242194*float64(y-1980) - math.Floor(float64(y-1980)/4.0)
 	val := 0.0
-	if 2100 <= y && y <= 2150 {
-		val = 21.8510 + add
-	} else if 1980 <= y {
-		val = 20.8431 + add
-	} else if 1900 <= y {
-		val = 20.8357 + add
-	} else if 1851 <= y {
-		val = 19.8277 + add
+
+	switch {
+	case 2100 <= y && y <= 2150:
+		val = future + add
+	case 1980 <= y:
+		val = present + add
+	case 1900 <= y:
+		val = past + add
 	}
+
 	return int(math.Floor(val))
 }
 
+func shunBunDay(y int) int {
+	return calcDay(21.8519, 20.8431, 20.8357, y)
+}
+
 func shuuBunDay(y int) int {
-	add := 0.242194*float64(y-1980) - math.Floor(float64(y-1980)/4.0)
-	val := 0.0
-	if 2100 <= y && y <= 2150 {
-		val = 24.2488 + add
-	} else if 1980 <= y {
-		val = 23.2488 + add
-	} else if 1900 <= y {
-		val = 23.2588 + add
-	} else if 1851 <= y {
-		val = 22.2588 + add
-	}
-	return int(math.Floor(val))
+	return calcDay(24.2488, 23.2488, 23.2588, y)
 }
