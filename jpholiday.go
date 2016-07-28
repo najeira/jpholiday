@@ -107,6 +107,12 @@ func getName(y, m, d, w int) string {
 				return "海の日"
 			}
 		}
+	} else if m == 8 {
+		if 2016 <= y {
+			if d == 11 {
+				return "山の日"
+			}
+		}
 	} else if m == 9 {
 		if 1966 <= y && y <= 2002 {
 			if d == 15 {
