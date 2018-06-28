@@ -48,6 +48,21 @@ func getName(y, m, d, w int) string {
 		return "皇太子・徳仁親王の結婚の儀"
 	}
 
+	// 東京オリンピック 特別措置法
+	if y == 2020 {
+		if m == 7 {
+			if d == 23 {
+				return "海の日"
+			} else if d == 24 {
+				return "スポーツの日"
+			}
+		} else if m == 8 {
+			if d == 10 {
+				return "山の日"
+			}
+		}
+	}
+
 	//国民の祝日
 	if m == 1 {
 		if d == 1 {
@@ -68,6 +83,9 @@ func getName(y, m, d, w int) string {
 			if d == 11 {
 				return "建国記念の日"
 			}
+		}
+		if 2020 <= y && d == 23 {
+			return "天皇誕生日"
 		}
 	} else if m == 3 {
 		if 19 <= d && d <= 22 {
@@ -103,13 +121,13 @@ func getName(y, m, d, w int) string {
 				return "海の日"
 			}
 		} else if 2003 <= y {
-			if 15 <= d && d <= 21 && w == 0 {
+			if 15 <= d && d <= 21 && w == 0 && y != 2020 {
 				return "海の日"
 			}
 		}
 	} else if m == 8 {
 		if 2016 <= y {
-			if d == 11 {
+			if d == 11 && y != 2020 {
 				return "山の日"
 			}
 		}
@@ -141,7 +159,10 @@ func getName(y, m, d, w int) string {
 				return "体育の日"
 			}
 		} else if 2000 <= y {
-			if 8 <= d && d <= 14 && w == 0 {
+			if 8 <= d && d <= 14 && w == 0 && y != 2020 {
+				if 2020 <= y {
+					return "スポーツの日"
+				}
 				return "体育の日"
 			}
 		}
@@ -152,7 +173,7 @@ func getName(y, m, d, w int) string {
 			return "勤労感謝の日"
 		}
 	} else if m == 12 {
-		if 1989 <= y && d == 23 {
+		if 1989 <= y && y <= 2018 && d == 23 {
 			return "天皇誕生日"
 		}
 	}
