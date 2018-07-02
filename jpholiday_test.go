@@ -1,7 +1,6 @@
 package jpholiday
 
 import (
-	"fmt"
 	"testing"
 	"time"
 )
