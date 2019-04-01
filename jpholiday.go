@@ -48,6 +48,14 @@ func getName(y, m, d, w int) string {
 		return "皇太子・徳仁親王の結婚の儀"
 	}
 
+	if y == 2019 {
+		if m == 5 && d == 1 {
+			return "天皇の即位"
+		} else if m == 10 && d == 22 {
+			return "即位礼正殿の儀"
+		}
+	}
+
 	// 東京オリンピック 特別措置法
 	if y == 2020 {
 		if m == 7 {
