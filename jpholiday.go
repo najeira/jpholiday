@@ -49,8 +49,14 @@ func getName(y, m, d, w int) string {
 	}
 
 	if y == 2019 {
-		if m == 5 && d == 1 {
-			return "天皇の即位"
+		if m == 4 && d == 30 {
+			return "国民の休日"
+		} else if m == 5 {
+			if d == 1 {
+				return "天皇の即位"
+			} else if d == 2 {
+				return "国民の休日"
+			}
 		} else if m == 10 && d == 22 {
 			return "即位礼正殿の儀"
 		}
