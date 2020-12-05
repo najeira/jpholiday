@@ -18,6 +18,11 @@
 	}
 
 
+## Changelog
+
+* 20201205: 2021年の東京オリンピック特別措置法の祝日に対応
+
+
 ## Lisence
 
 New BSD License.
