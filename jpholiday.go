@@ -77,6 +77,21 @@ func getName(y, m, d, w int) string {
 		}
 	}
 
+	// 東京オリンピック 特別措置法
+	if y == 2021 {
+		if m == 7 {
+			if d == 22 {
+				return "海の日"
+			} else if d == 23 {
+				return "スポーツの日"
+			}
+		} else if m == 8 {
+			if d == 8 {
+				return "山の日"
+			}
+		}
+	}
+
 	//国民の祝日
 	if m == 1 {
 		if d == 1 {
@@ -135,13 +150,13 @@ func getName(y, m, d, w int) string {
 				return "海の日"
 			}
 		} else if 2003 <= y {
-			if 15 <= d && d <= 21 && w == 0 && y != 2020 {
+			if 15 <= d && d <= 21 && w == 0 && y != 2020 && y != 2021 {
 				return "海の日"
 			}
 		}
 	} else if m == 8 {
 		if 2016 <= y {
-			if d == 11 && y != 2020 {
+			if d == 11 && y != 2020 && y != 2021 {
 				return "山の日"
 			}
 		}
@@ -173,7 +188,7 @@ func getName(y, m, d, w int) string {
 				return "体育の日"
 			}
 		} else if 2000 <= y {
-			if 8 <= d && d <= 14 && w == 0 && y != 2020 {
+			if 8 <= d && d <= 14 && w == 0 && y != 2020 && y != 2021 {
 				if 2020 <= y {
 					return "スポーツの日"
 				}
