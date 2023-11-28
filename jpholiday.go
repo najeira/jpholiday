@@ -14,7 +14,7 @@ func Name(t time.Time) string {
 
 	//振替休日
 	if len(name) <= 0 {
-		if 1973 <= y && w == 0 {
+		if w == 0 && (y >= 1974 || (y == 1973 && m >= 4)) {
 			yname := getYesterdayNameFromTime(t)
 			if len(yname) >= 1 {
 				name = "振替休日"

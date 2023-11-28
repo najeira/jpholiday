@@ -249,7 +249,6 @@ var HOLIDAY = map[string]string{
 	"1973-01-01": "元日",
 	"1973-01-15": "成人の日",
 	"1973-02-11": "建国記念の日",
-	"1973-02-12": "振替休日",
 	"1973-03-21": "春分の日",
 	"1973-04-29": "天皇誕生日",
 	"1973-04-30": "振替休日",
@@ -3337,10 +3336,14 @@ func TestHoliday(t *testing.T) {
 	day := start
 	for day.Unix() <= end.Unix() {
 		name := Name(day)
-		day_str := day.Format(format)
-		target := HOLIDAY[day_str]
+		dayStr := day.Format(format)
+		target := HOLIDAY[dayStr]
 		if name != target {
-			t.Error(day_str, name, target)
+			if name == "" {
+				t.Error("missing", dayStr, target)
+			} else {
+				t.Error("wrong", dayStr, name)
+			}
 		}
 		day = day.AddDate(0, 0, 1)
 	}
