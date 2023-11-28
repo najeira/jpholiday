@@ -27,7 +27,8 @@ func Name(t time.Time) string {
 }
 
 func toYMDW(t time.Time) (int, int, int, int) {
-	return t.Year(), int(t.Month()), t.Day(), (int(t.Weekday()) + 6) % 7
+	y, m, d := t.Date()
+	return y, int(m), d, (int(t.Weekday()) + 6) % 7
 }
 
 func getYesterdayNameFromTime(t time.Time) string {

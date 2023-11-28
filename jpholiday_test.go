@@ -3348,3 +3348,10 @@ func TestHoliday(t *testing.T) {
 		day = day.AddDate(0, 0, 1)
 	}
 }
+
+func BenchmarkName(b *testing.B) {
+	d := time.Date(2021, 8, 9, 0, 0, 0, 0, JST)
+	for i := 0; i < b.N; i++ {
+		_ = Name(d)
+	}
+}
