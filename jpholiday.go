@@ -14,7 +14,7 @@ func Name(t time.Time) string {
 
 	//振替休日
 	if len(name) <= 0 {
-		if 1973 <= y && w == 0 {
+		if w == 0 && (y >= 1974 || (y == 1973 && m >= 4)) {
 			yname := getYesterdayNameFromTime(t)
 			if len(yname) >= 1 {
 				name = "振替休日"
@@ -27,7 +27,8 @@ func Name(t time.Time) string {
 }
 
 func toYMDW(t time.Time) (int, int, int, int) {
-	return t.Year(), int(t.Month()), t.Day(), (int(t.Weekday()) + 6) % 7
+	y, m, d := t.Date()
+	return y, int(m), d, (int(t.Weekday()) + 6) % 7
 }
 
 func getYesterdayNameFromTime(t time.Time) string {
