@@ -1,4 +1,4 @@
-github.com/najeira/jpholiday v0.0.0-20201205051200-308d6dc577e8 h1:Oo+Ls77WfNMzXJMwASTWEzXwONE8LwVGEYT1JVHojb0=
-github.com/najeira/jpholiday v0.0.0-20201205051200-308d6dc577e8/go.mod h1:Uild+vOZefxLz2XTlaB7GAAm27xPTpUH4hggIyWTJaE=
+github.com/najeira/jpholiday v1.0.0 h1:Ixh9/IO1S089SBQH6QTcdrND2xfglFOm5g3zEDGcgyg=
+github.com/najeira/jpholiday v1.0.0/go.mod h1:wuo344H/SPTRrQtv9F+sVqlzNfScjsad+2eDRSu9LRw=
 golang.org/x/text v0.14.0 h1:ScX5w1eTa3QqT8oi6+ziP7dTV1S2+ALU0bI+0zXKWiQ=
 golang.org/x/text v0.14.0/go.mod h1:18ZOQIKpY8NJVqYksKHtTdi31H5itFRjB5/qKTNYzSU=
